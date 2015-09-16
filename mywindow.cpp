@@ -54,5 +54,26 @@ void myWindow::mySetPosition()
 
 void myWindow::setElems()
 {
+    QPushButton *like = new QPushButton("like");
+    QPushButton *dislike = new QPushButton("dislike");
+    QLabel *showText = new QLabel;
+
+    QVBoxLayout* pvbxLayout = new QVBoxLayout;
+    QHBoxLayout* phbxLayout = new QHBoxLayout;
+
+    showText ->setText("Это текстовый текст на костыле");
+
+    phbxLayout->addWidget(like);
+    phbxLayout->addWidget(dislike);
+
+    pvbxLayout->addWidget(showText);
+    pvbxLayout->addLayout(phbxLayout);
+
+    setLayout(pvbxLayout);
+
+}
+
+void myWindow::myShowMessage()
+{
 
 }

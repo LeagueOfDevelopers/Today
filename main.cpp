@@ -1,3 +1,4 @@
+#include <QObject>
 #include <QDesktopWidget>
 #include <QApplication>
 #include <ctime>
@@ -10,11 +11,13 @@
 #include <QPushButton>
 
 #include <mywindow.h>
+#include <myshowmanager.h>
 
 int main(int argc, char *argv[])
 {
     MyApplication a(argc, argv);
     myWindow w;
+    myShowManager manager;
 
     w.show();
 

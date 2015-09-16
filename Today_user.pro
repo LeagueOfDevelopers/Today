@@ -14,10 +14,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     myapplication.cpp \
-    mywindow.cpp
+    mywindow.cpp \
+    myshowmanager.cpp
 
 HEADERS  += \
     myapplication.h \
-    mywindow.h
+    mywindow.h \
+    myshowmanager.h
 
 FORMS    +=
