@@ -7,7 +7,7 @@ myShowManager::myShowManager(QObject *parent) : QObject(parent)
 
     QTimer *timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(checkTime()));
-    timer->start(1000);
+    timer->start(15000);
 }
 void myShowManager::writeToLog()
 {

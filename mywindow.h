@@ -17,7 +17,7 @@ signals:
 
 public slots:
     void myShowMessage();
-
+    void myHide();
 };
 
 #endif // WINDOW_H

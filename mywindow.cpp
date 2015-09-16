@@ -4,6 +4,8 @@
 #include <QLabel>
 #include <QLayout>
 #include <QPushButton>
+#include <QTime>
+#include <QTimer>
 
 myWindow::myWindow(QWidget *parent) : QWidget(parent)
 {
@@ -73,7 +75,17 @@ void myWindow::setElems()
 
 }
 
+void myWindow::myHide()
+{
+    hide();
+}
+
 void myWindow::myShowMessage()
 {
+    show();
+    QTimer::singleShot(10000,this,SLOT(myHide()));
+
+
+
 
 }
