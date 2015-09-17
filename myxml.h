@@ -7,8 +7,12 @@
 
 namespace myXml
 {
+    enum type_operation
+    {
+        dislikeTrue,dislikeFalse,incrimentMessage
+    };
 
     QVector < QPair <QString , int > > getMessages(bool = false);
-    void modifyMessage(int);
+    void modifyMessage(int num, enum type_operation);
 }
 #endif // MYXML_H

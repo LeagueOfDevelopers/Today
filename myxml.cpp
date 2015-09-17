@@ -45,7 +45,7 @@ namespace myXml
         return outing;
     }
 
-    void modifyMessage(int num)
+    void modifyMessage(int num, type_operation myType = type_operation::dislikeTrue)
     {
         QDomDocument doc("messages");
         QFile file("messages.xml");
@@ -60,14 +60,21 @@ namespace myXml
         file.close();
 
         // Modify content
-        QDomNodeList roots = doc.elementsByTagName("node");
-        if (roots.size() < num) {
+        QDomNodeList nodes = doc.elementsByTagName("node");
+        if (nodes.size() < num) {
            return;
         }
-        QDomElement root = roots.at(num).toElement();
-        root.setAttribute("dislike", "1");
+        QDomElement node = nodes.at(num).toElement();
 
-
+        if(myType == type_operation::dislikeTrue)
+            node.setAttribute("dislike", "1");
+        if(myType == type_operation::dislikeFalse)
+            node.setAttribute("dislike", "0");
+        if(myType == type_operation::incrimentMessage)
+        {
+            int buf = node.attribute("shows","").toInt();
+            node.setAttribute("dislike", QString::number(buf+1));
+        }
         // Save content back to the file
         if (!file.open(QIODevice::Truncate | QIODevice::WriteOnly)) {
             return;

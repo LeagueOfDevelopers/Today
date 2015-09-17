@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QTime>
 #include <QTimer>
+#include <myxml.h>
 
 myWindow::myWindow(QWidget *parent) : QWidget(parent)
 {
@@ -57,19 +58,19 @@ void myWindow::mySetPosition()
 
 void myWindow::setElems()
 {
-    QPushButton *like = new QPushButton("like");
-    QPushButton *dislike = new QPushButton("dislike");
-    QLabel *showText = new QLabel;
+    like = new QPushButton("like");
+    dislike = new QPushButton("dislike");
+    label = new QLabel;
 
     QVBoxLayout* pvbxLayout = new QVBoxLayout;
     QHBoxLayout* phbxLayout = new QHBoxLayout;
 
-    showText ->setText("Это текстовый текст на костыле");
+    label ->setText("Это текстовый текст на костыле");
 
     phbxLayout->addWidget(like);
     phbxLayout->addWidget(dislike);
 
-    pvbxLayout->addWidget(showText);
+    pvbxLayout->addWidget(label);
     pvbxLayout->addLayout(phbxLayout);
 
     setLayout(pvbxLayout);
@@ -83,10 +84,14 @@ void myWindow::myHide()
 
 void myWindow::myShowMessage()
 {
+    QVector < QPair < QString, int > > mas = myXml::getMessages();
+
+    //Тут надо рандомчик подкинуть
+
+    QString showText = mas[0].first;
+    label->setText(showText);
     show();
     QTimer::singleShot(10000,this,SLOT(myHide()));
-
-
 
 
 }

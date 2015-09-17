@@ -19,6 +19,8 @@ int main(int argc, char *argv[])
 
     MyApplication a(argc, argv);
 
+    QVector< QPair < QString, int > > mas = myXml::getMessages();
+
     myWindow w;
     myShowManager manager;
 

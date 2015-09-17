@@ -17,12 +17,16 @@ SOURCES += main.cpp \
     myapplication.cpp \
     mywindow.cpp \
     myshowmanager.cpp \
-    myxml.cpp
+    myxml.cpp \
+    mynetworkmanager.cpp \
+    mylog.cpp
 
 HEADERS  += \
     myapplication.h \
     mywindow.h \
     myshowmanager.h \
-    myxml.h
+    myxml.h \
+    mynetworkmanager.h \
+    mylog.h
 
 FORMS    +=
