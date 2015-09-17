@@ -8,7 +8,7 @@
 namespace myXml
 {
 
-    QVector < QPair <QString , int > > getMessages();
-    static void modifyMessage(int);
+    QVector < QPair <QString , int > > getMessages(bool = false);
+    void modifyMessage(int);
 }
 #endif // MYXML_H
