@@ -9,6 +9,7 @@
 
 myWindow::myWindow(QWidget *parent) : QWidget(parent)
 {
+
     mySetBackgroundColor();
     mySetPosition();
     setElems();

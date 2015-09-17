@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -15,11 +16,13 @@ TEMPLATE = app
 SOURCES += main.cpp \
     myapplication.cpp \
     mywindow.cpp \
-    myshowmanager.cpp
+    myshowmanager.cpp \
+    myxml.cpp
 
 HEADERS  += \
     myapplication.h \
     mywindow.h \
-    myshowmanager.h
+    myshowmanager.h \
+    myxml.h
 
 FORMS    +=

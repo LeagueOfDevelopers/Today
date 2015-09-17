@@ -12,17 +12,18 @@
 
 #include <mywindow.h>
 #include <myshowmanager.h>
+#include <myxml.h>
 
 int main(int argc, char *argv[])
 {
 
     MyApplication a(argc, argv);
-    myWindow *w = new myWindow;
-    myShowManager *manager = new myShowManager;
 
-    QObject::connect(manager,SIGNAL(showMessage()),w,SLOT(myShowMessage()));
+    myWindow w;
+    myShowManager manager;
+
+    QObject::connect(&manager,SIGNAL(showMessage()),&w,SLOT(myShowMessage()));
 
 
     return a.exec();
 }
-
