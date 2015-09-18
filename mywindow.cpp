@@ -7,6 +7,7 @@
 #include <QTime>
 #include <QTimer>
 #include <myxml.h>
+#include <mylog.h>
 
 myWindow::myWindow(QWidget *parent) : QWidget(parent)
 {
@@ -65,8 +66,6 @@ void myWindow::setElems()
     QVBoxLayout* pvbxLayout = new QVBoxLayout;
     QHBoxLayout* phbxLayout = new QHBoxLayout;
 
-    label ->setText("Это текстовый текст на костыле");
-
     phbxLayout->addWidget(like);
     phbxLayout->addWidget(dislike);
 
@@ -92,6 +91,6 @@ void myWindow::myShowMessage()
     label->setText(showText);
     show();
     QTimer::singleShot(10000,this,SLOT(myHide()));
-
+    myLog::writeShowToLog(QTime::currentTime());
 
 }

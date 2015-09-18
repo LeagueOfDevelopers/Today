@@ -5,6 +5,7 @@
 #include <QtXml/QDomDocument>
 #include <QErrorMessage>
 
+
 namespace myXml
 {
 
@@ -45,7 +46,7 @@ namespace myXml
         return outing;
     }
 
-    void modifyMessage(int num, type_operation myType = type_operation::dislikeTrue)
+    void modifyMessage(int num, type_operation myType = dislikeTrue)
     {
         QDomDocument doc("messages");
         QFile file("messages.xml");
@@ -66,14 +67,14 @@ namespace myXml
         }
         QDomElement node = nodes.at(num).toElement();
 
-        if(myType == type_operation::dislikeTrue)
+        if(myType == dislikeTrue)
             node.setAttribute("dislike", "1");
-        if(myType == type_operation::dislikeFalse)
+        if(myType == dislikeFalse)
             node.setAttribute("dislike", "0");
-        if(myType == type_operation::incrimentMessage)
+        if(myType == incrimentMessage)
         {
             int buf = node.attribute("shows","").toInt();
-            node.setAttribute("dislike", QString::number(buf+1));
+            node.setAttribute("shows", QString::number(buf+1));
         }
         // Save content back to the file
         if (!file.open(QIODevice::Truncate | QIODevice::WriteOnly)) {

@@ -4,23 +4,20 @@
 #include <ctime>
 #include <Qrect>
 #include <QtGui>
-#include <myapplication.h>
 #include <QWidget>
 #include <QLabel>
 #include <QLayout>
 #include <QPushButton>
 
+#include <myapplication.h>
 #include <mywindow.h>
 #include <myshowmanager.h>
 #include <myxml.h>
+#include <mylog.h>
 
 int main(int argc, char *argv[])
 {
-
     MyApplication a(argc, argv);
-
-    QVector< QPair < QString, int > > mas = myXml::getMessages();
-
     myWindow w;
     myShowManager manager;
 
