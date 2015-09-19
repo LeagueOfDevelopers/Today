@@ -10,6 +10,7 @@
 #include <QSettings>
 #include <QtAlgorithms>
 #include <algorithm>
+#include <string>
 
 namespace myLog {
 
@@ -39,6 +40,12 @@ namespace myLog {
         // replace existing node with new node
         doc.documentElement().replaceChild(newNodeTag, last_show);
 
+        QDomNodeList days = doc.elementsByTagName("day");
+        if (days.size() < 1) {
+           return;
+        }
+        QDomElement day = days.at(0).toElement();
+        day.setAttribute("count",QString::number(day.attribute("count","").toInt() + 1));
 
         QFile new_file("shows.xml");
         if (!new_file.open(QIODevice::Truncate | QIODevice::WriteOnly)) {
@@ -49,6 +56,7 @@ namespace myLog {
         new_file.close();
 
     }
+
     void readFromLog()
     {
         QDomDocument doc("shows");
@@ -156,7 +164,115 @@ namespace myLog {
         QByteArray xml = doc.toByteArray();
         new_file.write(xml);
         new_file.close();
+    }
 
+    int getCountCurDay()
+    {
+        QDomDocument doc("shows");
+        QFile file("shows.xml");
+        if (!file.open(QIODevice::ReadOnly)) {
+            return 0;
+        }
+        // Parse file
+        if (!doc.setContent(&file)) {
+           file.close();
+           return 0;
+        }
+        file.close();
+
+        // Modify content
+        QDomNodeList days = doc.elementsByTagName("day");
+        if (days.size() < 1) {
+           return 0;
+        }
+        QDomElement day = days.at(0).toElement();
+        return day.attribute("count","").toInt();
+    }
+
+    QTime getLastTime()
+    {
+        QDomDocument doc("shows");
+        QFile file("shows.xml");
+
+        QTime outing;
+        outing.setHMS(0,0,0);
+
+
+        if (!file.open(QIODevice::ReadOnly)) {
+            return outing;
+        }
+        // Parse file
+        if (!doc.setContent(&file)) {
+           file.close();
+           return outing;
+        }
+        file.close();
+
+        // Modify content
+        QDomNodeList elems = doc.elementsByTagName("last_show");
+        if (elems.size() < 1) {
+           return outing;
+        }
+        QDomElement last_show = elems.at(0).toElement();
+
+        QString oldtext = last_show.text();
+        std::string text = oldtext.toStdString();
+        QString fir,sec;
+        bool flag = false;
+        for(int i = 0; i < text.size(); ++i)
+        {
+            if(text[i] == ':')
+            {
+                flag = true;
+                continue;
+            }
+            if(!flag)
+                fir += text[i];
+            else
+                sec += text[i];
+        }
+        outing.setHMS(fir.toInt(),sec.toInt(),0);
+        return outing;
+
+    }
+
+    QTime getPlanTime(int pointer)
+    {
+        QDomDocument doc("shows");
+        QFile file("shows.xml");
+
+        QTime outing;
+        outing.setHMS(0,0,0);
+
+        if (!file.open(QIODevice::ReadOnly)) {
+            return outing;
+        }
+        // Parse file
+        if (!doc.setContent(&file)) {
+           file.close();
+           return outing;
+        }
+        file.close();
+
+        QDomNode node = doc.documentElement().elementsByTagName("showing").item(pointer);
+
+        std::string text = node.toElement().text().toStdString();
+        QString fir,sec;
+        bool flag = false;
+        for(int i = 0; i < text.size(); ++i)
+        {
+            if(text[i] == ':')
+            {
+                flag = true;
+                continue;
+            }
+            if(!flag)
+                fir += text[i];
+            else
+                sec += text[i];
+        }
+        outing.setHMS(fir.toInt(),sec.toInt(),0);
+        return outing;
 
 
     }

@@ -2,11 +2,20 @@
 #define MYSHOWMANAGER_H
 
 #include <QObject>
+#include <QTime>
+#include <QDate>
+#include <QDateTime>
 
 class myShowManager : public QObject
 {
     Q_OBJECT
 private:
+    int countShows;
+    QTime last_time;
+    QTime plan_showing;
+    QDateTime start_time;
+
+
     void readLog();
     void writeToLog();
     void setTime();

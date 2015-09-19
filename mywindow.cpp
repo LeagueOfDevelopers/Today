@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QTime>
 #include <QTimer>
+#include <ctime>
 #include <myxml.h>
 #include <mylog.h>
 
@@ -85,12 +86,15 @@ void myWindow::myShowMessage()
 {
     QVector < QPair < QString, int > > mas = myXml::getMessages();
 
-    //Тут надо рандомчик подкинуть
+    qsrand(time(NULL));
 
-    QString showText = mas[0].first;
+    int numMessage = qrand()%mas.size();
+
+    QString showText = mas[numMessage].first;
     label->setText(showText);
     show();
+
     QTimer::singleShot(10000,this,SLOT(myHide()));
     myLog::writeShowToLog(QTime::currentTime());
-
+    myXml::modifyMessage(mas[numMessage].second,myXml::incrimentMessage);
 }
