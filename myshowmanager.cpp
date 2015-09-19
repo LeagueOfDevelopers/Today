@@ -59,6 +59,6 @@ void myShowManager::setTime()
 }
 bool myShowManager::checkAvaiableShowing()
 {
-    return true;
 
+    return true;
 }

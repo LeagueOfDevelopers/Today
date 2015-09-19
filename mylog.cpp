@@ -47,13 +47,12 @@ namespace myLog {
         QDomElement day = days.at(0).toElement();
         day.setAttribute("count",QString::number(day.attribute("count","").toInt() + 1));
 
-        QFile new_file("shows.xml");
-        if (!new_file.open(QIODevice::Truncate | QIODevice::WriteOnly)) {
+        if (!file.open(QIODevice::Truncate | QIODevice::WriteOnly)) {
             return;
         }
         QByteArray xml = doc.toByteArray();
-        new_file.write(xml);
-        new_file.close();
+        file.write(xml);
+        file.close();
 
     }
 
@@ -88,14 +87,6 @@ namespace myLog {
         }
 
         return;
-
-        // Save content back to the file
-        if (!file.open(QIODevice::Truncate | QIODevice::WriteOnly)) {
-            return;
-        }
-        QByteArray xml = doc.toByteArray();
-        file.write(xml);
-        file.close();
     }
 
     void makeNewDay()
@@ -180,7 +171,6 @@ namespace myLog {
         }
         file.close();
 
-        // Modify content
         QDomNodeList days = doc.elementsByTagName("day");
         if (days.size() < 1) {
            return 0;
@@ -254,9 +244,23 @@ namespace myLog {
         }
         file.close();
 
-        QDomNode node = doc.documentElement().elementsByTagName("showing").item(pointer);
 
-        std::string text = node.toElement().text().toStdString();
+        QDomNode plan_today = doc.elementsByTagName("plan_today").item(0);
+
+        QDomNode magic = plan_today.firstChild();
+
+        while(!magic.isNull() && pointer)
+        {
+            magic = magic.nextSibling();
+            --pointer;
+        }
+
+
+
+        QDomNode node = magic;
+
+
+        std::string text = node.toElement().attribute("time","").toStdString();
         QString fir,sec;
         bool flag = false;
         for(int i = 0; i < text.size(); ++i)

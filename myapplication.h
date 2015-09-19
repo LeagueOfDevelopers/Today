@@ -12,7 +12,6 @@ private:
     void setAutoload();
     void loadSettings();
     void loadUpdates();
-    void setDefaultSettings();
 public:
     MyApplication(int,char* []);
 signals:

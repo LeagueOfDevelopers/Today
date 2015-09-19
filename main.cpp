@@ -14,6 +14,7 @@
 #include <myshowmanager.h>
 #include <myxml.h>
 #include <mylog.h>
+#include <QSettings>
 
 int main(int argc, char *argv[])
 {

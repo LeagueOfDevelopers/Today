@@ -34,7 +34,3 @@ void MyApplication::loadUpdates()
 {
 
 }
-void MyApplication::setDefaultSettings()
-{
-
-}
