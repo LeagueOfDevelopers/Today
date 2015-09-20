@@ -1,12 +1,12 @@
 #include "myapplication.h"
 #include <QSettings>
+#include <QSystemTrayIcon>
 
 MyApplication::MyApplication(int argc,char* argv[]) : QApplication(argc, argv)
 {
     if(!checkAutoload())
         setAutoload();
     loadSettings();
-
 }
 
 bool MyApplication::checkAutoload()

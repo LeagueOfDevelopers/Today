@@ -28,9 +28,11 @@ void myShowManager::readLog()
 }
 void myShowManager::checkTime()
 {
+    //СДЕЛАТЬ ПРОВЕРКУ НА ВХОЖДЕНИЕ В НОВЫЕ СУТКИ!
+
     QDateTime a = QDateTime::currentDateTime();
     unsigned long long int z = a.toTime_t() - start_time.toTime_t();
-    if(z/1000 < 60)
+    if(z < 60)
         return;
 
     if(QTime::currentTime() > plan_showing)
@@ -42,7 +44,7 @@ void myShowManager::checkTime()
         QTime b;
         b.setHMS(0,30,0);
 
-        if( (QTime::currentTime().elapsed() - last_time.elapsed()) > b.elapsed())
+        if( (QTime::currentTime().elapsed() - last_time.elapsed()) > b.elapsed() || countShows == 0)
         if(checkAvaiableShowing())
         {
             ++countShows;

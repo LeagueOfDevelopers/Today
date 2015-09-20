@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <QApplication>
+#include <QMenu>
+#include <QSystemTrayIcon>
 
 class MyApplication : public QApplication
 {
@@ -12,6 +14,7 @@ private:
     void setAutoload();
     void loadSettings();
     void loadUpdates();
+
 public:
     MyApplication(int,char* []);
 signals:

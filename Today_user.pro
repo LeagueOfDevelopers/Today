@@ -19,7 +19,8 @@ SOURCES += main.cpp \
     myshowmanager.cpp \
     myxml.cpp \
     mynetworkmanager.cpp \
-    mylog.cpp
+    mylog.cpp \
+    settings.cpp
 
 HEADERS  += \
     myapplication.h \
@@ -27,6 +28,11 @@ HEADERS  += \
     myshowmanager.h \
     myxml.h \
     mynetworkmanager.h \
-    mylog.h
+    mylog.h \
+    settings.h
 
-FORMS    +=
+FORMS    += \
+    settings.ui
+
+RESOURCES += \
+    myresource.qrc
