@@ -1,14 +1,58 @@
 #include "settings.h"
 #include "ui_settings.h"
+#include <QSettings>
+#include <QDialogButtonBox>
 
 Settings::Settings(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Settings)
 {
-
     ui->setupUi(this);
     this -> setTrayIconActions();
     this -> showTrayIcon();
+
+    QSettings _settings("lod","Today");
+
+    ui->sliderTimeBetweenShows->setRange(5,360);
+    ui->sliderTimeBetweenShows->setSingleStep(5);
+    ui->sliderShows->setRange(1,50);
+
+    ui->sliderShows->setValue(_settings.value("frequency","").toInt());
+    ui->sliderTimeBetweenShows->setValue(_settings.value("periodShows","").toInt());
+
+
+    connect(ui->buttonBox,SIGNAL(accepted()),this,SLOT(slotApply()));
+    connect(ui->buttonBox,SIGNAL(rejected()),this,SLOT(slotCancel()));
+}
+
+void Settings::slotCancel()
+{
+    QSettings _settings("lod","Today");
+
+    int oldTimeShows = _settings.value("periodShows","").toInt();
+    int oldCountShows = _settings.value("frequency","").toInt();
+
+    ui->sliderShows->setValue(oldCountShows);
+    ui->sliderTimeBetweenShows->setValue(oldTimeShows);
+
+}
+
+void Settings::slotApply()
+{
+    /*
+     * Принять изменения в регистре
+     * Прописать логику изменения базы и настроек
+     * */
+
+    QSettings _settings("lod","Today");
+
+    int newTimeShows = ui->sliderTimeBetweenShows->value();
+    int newCountShows = ui->sliderShows->value();
+
+    _settings.setValue("frequency",newCountShows);
+    _settings.setValue("periodShows",newTimeShows);
+
+    return;
 }
 
 void Settings::showTrayIcon()

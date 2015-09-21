@@ -12,7 +12,6 @@
 
 myWindow::myWindow(QWidget *parent) : QWidget(parent)
 {
-
     mySetBackgroundColor();
     mySetPosition();
     setElems();
@@ -92,7 +91,11 @@ void myWindow::myShowMessage()
 
     QString showText = mas[numMessage].first;
     label->setText(showText);
+    setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint);
+
     show();
+    setFocus();
+
 
     QTimer::singleShot(10000,this,SLOT(myHide()));
     myLog::writeShowToLog(QTime::currentTime());

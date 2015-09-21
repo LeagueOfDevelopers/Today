@@ -25,7 +25,8 @@ private slots:
     void trayActionExecute();
     void setTrayIconActions();
     void showTrayIcon();
-
+    void slotApply();
+    void slotCancel();
 private:
     QMenu *trayIconMenu;
     QAction *minimizeAction;

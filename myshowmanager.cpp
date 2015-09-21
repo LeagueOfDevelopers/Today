@@ -32,6 +32,7 @@ void myShowManager::checkTime()
 
     QDateTime a = QDateTime::currentDateTime();
     unsigned long long int z = a.toTime_t() - start_time.toTime_t();
+    //всунули костыль для теста
     if(z < 60)
         return;
 
@@ -42,7 +43,10 @@ void myShowManager::checkTime()
             return;
 
         QTime b;
-        b.setHMS(0,30,0);
+
+        int hours = settings.value("periodShows").toInt()/60;
+        int minutes = settings.value("periodShows").toInt() - hours*60;
+        b.setHMS(hours,minutes,0);
 
         if( (QTime::currentTime().elapsed() - last_time.elapsed()) > b.elapsed() || countShows == 0)
         if(checkAvaiableShowing())

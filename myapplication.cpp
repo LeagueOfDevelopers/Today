@@ -28,6 +28,11 @@ void MyApplication::loadSettings()
 
     if(settings.value("frequency").toInt()==0)
         settings.setValue("frequency",3);
+    if(settings.value("periodShows").toInt()==0)
+        settings.setValue("periodShows",30);
+
+
+
 
 }
 void MyApplication::loadUpdates()
