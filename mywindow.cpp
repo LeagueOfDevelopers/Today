@@ -15,6 +15,16 @@ myWindow::myWindow(QWidget *parent) : QWidget(parent)
     mySetBackgroundColor();
     mySetPosition();
     setElems();
+    setMyLabelStyle();
+
+}
+
+void myWindow::setMyLabelStyle()
+{
+    label->setAlignment(Qt::AlignCenter);
+    QPalette pal = label->palette();
+    pal.setColor(backgroundRole(),QColor(Qt::white).light(200));
+    label->setPalette(pal);
 }
 
 void myWindow::mySetBackgroundColor()

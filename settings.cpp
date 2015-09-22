@@ -11,6 +11,8 @@ Settings::Settings(QWidget *parent) :
     this -> setTrayIconActions();
     this -> showTrayIcon();
 
+    mySetBackgroundColor();
+
     QSettings _settings("lod","Today");
 
     ui->sliderTimeBetweenShows->setRange(5,360);
@@ -23,6 +25,11 @@ Settings::Settings(QWidget *parent) :
 
     connect(ui->buttonBox,SIGNAL(accepted()),this,SLOT(slotApply()));
     connect(ui->buttonBox,SIGNAL(rejected()),this,SLOT(slotCancel()));
+}
+
+QPushButton* Settings::returnButtonToAddMsg()
+{
+    return ui->addMsgButton;
 }
 
 void Settings::slotCancel()
@@ -68,6 +75,30 @@ void Settings::showTrayIcon()
 
     // Выводим значок...
     trayIcon -> show();
+}
+
+void Settings::mySetBackgroundColor()
+{
+    QPalette pal;
+    int nLight = 190;
+
+    QSettings settings("lod","Today");
+    QString color = settings.value("color").toString();
+
+    if(color == "red")
+    {
+        pal.setColor(backgroundRole(),QColor(Qt::red).light(nLight));
+    }
+    if(color == "blue")
+    {
+        pal.setColor(backgroundRole(),QColor(Qt::blue).light(nLight));
+    }
+    if(color == "green")
+    {
+        pal.setColor(backgroundRole(),QColor(Qt::green).light(nLight));
+    }
+    setPalette(pal);
+
 }
 
 void Settings::trayActionExecute()

@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QMenu>
 #include <QSystemTrayIcon>
+#include <QPushButton>
 
 namespace Ui {
 class Settings;
@@ -16,9 +17,12 @@ class Settings : public QWidget
 public:
     explicit Settings(QWidget *parent = 0);
     ~Settings();
+    QPushButton* returnButtonToAddMsg();
 
 private:
     Ui::Settings *ui;
+    void mySetBackgroundColor();
+
 private slots:
     void changeEvent(QEvent*);
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);

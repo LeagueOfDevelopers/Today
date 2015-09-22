@@ -16,6 +16,7 @@ private:
     void mySetBackgroundColor();
     void mySetPosition();
     void setElems();
+    void setMyLabelStyle();
 public:
     explicit myWindow(QWidget *parent = 0);
 

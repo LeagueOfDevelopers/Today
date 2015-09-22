@@ -6,18 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>561</width>
-    <height>312</height>
+    <width>569</width>
+    <height>310</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
+     <x>10</x>
+     <y>10</y>
      <width>541</width>
      <height>281</height>
     </rect>
@@ -88,6 +88,24 @@
      </layout>
     </item>
     <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QPushButton" name="addMsgButton">
+        <property name="text">
+         <string>Добавить свое сообщение</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="editMsgButton">
+        <property name="text">
+         <string>Редактировать свои сообщения</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
      <widget class="QSplitter" name="splitter">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -106,17 +124,6 @@
     </item>
    </layout>
   </widget>
-  <zorder>minShows</zorder>
-  <zorder>maxShows</zorder>
-  <zorder>sliderShows</zorder>
-  <zorder>textShows</zorder>
-  <zorder>layoutWidget</zorder>
-  <zorder>buttonBox</zorder>
-  <zorder>checkBox</zorder>
-  <zorder>plainTextEdit</zorder>
-  <zorder>label</zorder>
-  <zorder>label</zorder>
-  <zorder>plainTextEdit</zorder>
  </widget>
  <resources/>
  <connections/>

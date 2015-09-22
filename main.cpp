@@ -16,6 +16,7 @@
 #include <myxml.h>
 #include <mylog.h>
 #include <settings.h>
+#include <windowaddmsg.h>
 
 
 int main(int argc, char *argv[])
@@ -24,9 +25,10 @@ int main(int argc, char *argv[])
     myWindow w;
     myShowManager manager;
     Settings z;
+    windowAddMsg x;
 
     QObject::connect(&manager,SIGNAL(showMessage()),&w,SLOT(myShowMessage()));
-
+    QObject::connect(z.returnButtonToAddMsg(),SIGNAL(clicked(bool)),&x,SLOT(show()));
 
     return a.exec();
 }

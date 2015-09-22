@@ -84,4 +84,53 @@ namespace myXml
         file.write(xml);
         file.close();
     }
+
+    void addMessage(QString text)
+    {
+        QDomDocument doc("messages");
+        QFile file("messages.xml");
+        if (!file.open(QIODevice::ReadOnly)) {
+            return;
+        }
+        // Parse file
+        if (!doc.setContent(&file)) {
+           file.close();
+           return;
+        }
+        file.close();
+
+        // Modify content
+        QDomNodeList nodes = doc.elementsByTagName("node");
+
+        int numNewNode = nodes.size()+1;
+        int numInBaseNewNode = -1;
+        int showsNewNode = 0;
+        int dislikeNewNode = 0;
+
+        QDomNode big_node = doc.elementsByTagName("big_node").item(0);
+
+        QDomNode newNode = doc.createElement("node");
+        newNode.setNodeValue(text);
+        QDomElement newNodeElem = newNode.toElement();
+        newNodeElem.setAttribute("dislike",dislikeNewNode);
+        newNodeElem.setAttribute("num",numNewNode);
+        newNodeElem.setAttribute("num_in_base",numInBaseNewNode);
+
+        QDomNode newNodeText = doc.createElement("text");
+        QDomText newNodeTextValue = doc.createTextNode(text);
+
+        newNodeText.appendChild(newNodeTextValue);
+
+        newNode.appendChild(newNodeText);
+
+        big_node.appendChild(newNode);
+
+        // Save content back to the file
+        if (!file.open(QIODevice::Truncate | QIODevice::WriteOnly)) {
+            return;
+        }
+        QByteArray xml = doc.toByteArray();
+        file.write(xml);
+        file.close();
+    }
 }

@@ -14,5 +14,6 @@ namespace myXml
 
     QVector < QPair <QString , int > > getMessages(bool = false);
     void modifyMessage(int num, enum type_operation);
+    void addMessage(QString text);
 }
 #endif // MYXML_H

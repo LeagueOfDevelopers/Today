@@ -20,7 +20,8 @@ SOURCES += main.cpp \
     myxml.cpp \
     mynetworkmanager.cpp \
     mylog.cpp \
-    settings.cpp
+    settings.cpp \
+    windowaddmsg.cpp
 
 HEADERS  += \
     myapplication.h \
@@ -29,10 +30,12 @@ HEADERS  += \
     myxml.h \
     mynetworkmanager.h \
     mylog.h \
-    settings.h
+    settings.h \
+    windowaddmsg.h
 
 FORMS    += \
-    settings.ui
+    settings.ui \
+    windowaddmsg.ui
 
 RESOURCES += \
     myresource.qrc
