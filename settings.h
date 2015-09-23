@@ -18,6 +18,8 @@ public:
     explicit Settings(QWidget *parent = 0);
     ~Settings();
     QPushButton* returnButtonToAddMsg();
+    QPushButton* returnButtonEditMsg();
+
 
 private:
     Ui::Settings *ui;

@@ -32,6 +32,11 @@ QPushButton* Settings::returnButtonToAddMsg()
     return ui->addMsgButton;
 }
 
+QPushButton* Settings::returnButtonEditMsg()
+{
+    return ui->editMsgButton;
+}
+
 void Settings::slotCancel()
 {
     QSettings _settings("lod","Today");

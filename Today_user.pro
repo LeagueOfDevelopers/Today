@@ -21,7 +21,8 @@ SOURCES += main.cpp \
     mynetworkmanager.cpp \
     mylog.cpp \
     settings.cpp \
-    windowaddmsg.cpp
+    windowaddmsg.cpp \
+    windoweditmsglist.cpp
 
 HEADERS  += \
     myapplication.h \
@@ -31,11 +32,13 @@ HEADERS  += \
     mynetworkmanager.h \
     mylog.h \
     settings.h \
-    windowaddmsg.h
+    windowaddmsg.h \
+    windoweditmsglist.h
 
 FORMS    += \
     settings.ui \
-    windowaddmsg.ui
+    windowaddmsg.ui \
+    windoweditmsglist.ui
 
 RESOURCES += \
     myresource.qrc
