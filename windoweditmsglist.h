@@ -2,6 +2,7 @@
 #define WINDOWEDITMSGLIST_H
 
 #include <QWidget>
+#include <QDomNode>
 
 namespace Ui {
 class windowEditMsgList;
@@ -17,8 +18,9 @@ public:
 
 public slots:
     void slotShow();
-
+    void slotApply();
 private:
+    QVector<QDomNode> list;
     void mySetBackgroundColor();
     Ui::windowEditMsgList *ui;
 };

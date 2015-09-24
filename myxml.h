@@ -4,6 +4,7 @@
 #include <QVector>
 #include <QPair>
 #include <QString>
+#include <QDomNode>
 
 namespace myXml
 {
@@ -15,5 +16,7 @@ namespace myXml
     QVector < QPair <QString , int > > getMessages(bool = false);
     void modifyMessage(int num, enum type_operation);
     void addMessage(QString text);
+    QVector < QDomNode >getAllMsg();
+    void modifyBase ( QVector < QDomNode > , QVector < QPair <QString , int > > );
 }
 #endif // MYXML_H

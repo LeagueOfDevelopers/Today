@@ -7,6 +7,8 @@
 #include <QListWidgetItem>
 #include <QTableWidget>
 #include <QTableWidgetItem>
+#include <myxml.h>
+
 
 windowEditMsgList::windowEditMsgList(QWidget *parent) :
     QWidget(parent),
@@ -14,17 +16,36 @@ windowEditMsgList::windowEditMsgList(QWidget *parent) :
 {
     mySetBackgroundColor();
     ui->setupUi(this);
+    connect(ui->buttonBox,SIGNAL(accepted()),this,SLOT(slotApply()));
+}
+
+void windowEditMsgList::slotApply()
+{
+    QVector < QPair < QString, int > > outing(list.size());
+    for(int i = 0 ; i < list.size(); ++i)
+    {
+        QString aaa = ui->tableWidget->item(i,0)->text();
+        int dislike = ui->tableWidget->item(i,0)->checkState();
+
+        outing[i] = qMakePair(aaa,dislike == Qt::Checked ? 0 : 1);
+    }
+    myXml::modifyBase(list,outing);
 }
 
 void windowEditMsgList::slotShow()
 {
+    list = myXml::getAllMsg();
+
     ui->tableWidget->setColumnCount(1);
-    ui->tableWidget->setRowCount(10);
-    for(int i = 0 ; i < 10; ++i)
+    ui->tableWidget->setRowCount(list.size());
+    for(int i = 0 ; i < list.size(); ++i)
     {
-        QTableWidgetItem* pItem(new QTableWidgetItem(tr("blablabla")));
+        QTableWidgetItem* pItem(new QTableWidgetItem(list[i].childNodes().item(0).toElement().text()));
         pItem->setFlags(pItem->flags() | Qt::ItemIsUserCheckable);
-        pItem->setCheckState(Qt::Unchecked);
+        if(list[i].toElement().attribute("dislike","")!=QString("0"))
+           pItem->setCheckState(Qt::Unchecked);
+        else
+           pItem->setCheckState(Qt::Checked);
         ui->tableWidget->setItem(i, 0, pItem);
     }
 

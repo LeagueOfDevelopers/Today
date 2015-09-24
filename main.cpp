@@ -21,15 +21,15 @@
 
 int main(int argc, char *argv[])
 {
-    myLog::makeNewDay();
+    //myLog::makeNewDay();
     MyApplication a(argc, argv);
     myWindow w;
-    myShowManager manager;
+    myShowManager m;
     Settings z;
     windowAddMsg x;
     windowEditMsgList q;
 
-    QObject::connect(&manager,SIGNAL(showMessage()),&w,SLOT(myShowMessage()));
+    QObject::connect(&m,SIGNAL(showMessage()),&w,SLOT(myShowMessage()));
     QObject::connect(z.returnButtonToAddMsg(),SIGNAL(clicked(bool)),&x,SLOT(show()));
     QObject::connect(z.returnButtonEditMsg(),SIGNAL(clicked(bool)),&q,SLOT(slotShow()));
 
