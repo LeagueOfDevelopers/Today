@@ -49,6 +49,12 @@ namespace myXml
             }
         }
 
+        for(int j = 0; j < nodes.size(); ++j)
+        {
+            if(nodes.item(j).childNodes().item(0).toElement().text()==QString(DELETING_MSG))
+                nodes.item(j).parentNode().removeChild(nodes.item(j));
+        }
+
         // Save content back to the file
         if (!file.open(QIODevice::Truncate | QIODevice::WriteOnly)) {
             return;

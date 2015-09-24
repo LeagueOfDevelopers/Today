@@ -16,9 +16,12 @@ public:
     explicit windowEditMsgList(QWidget *parent = 0);
     ~windowEditMsgList();
 
+private slots:
+
 public slots:
     void slotShow();
     void slotApply();
+    void slotDelete();
 private:
     QVector<QDomNode> list;
     void mySetBackgroundColor();

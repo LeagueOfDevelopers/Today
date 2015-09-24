@@ -10,6 +10,7 @@
 #include <myxml.h>
 
 
+
 windowEditMsgList::windowEditMsgList(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::windowEditMsgList)
@@ -17,6 +18,18 @@ windowEditMsgList::windowEditMsgList(QWidget *parent) :
     mySetBackgroundColor();
     ui->setupUi(this);
     connect(ui->buttonBox,SIGNAL(accepted()),this,SLOT(slotApply()));
+    connect(ui->buttonDelete,SIGNAL(clicked(bool)),SLOT(slotDelete()));
+}
+
+void windowEditMsgList::slotDelete()
+{
+    QList < QTableWidgetItem* > listItems = ui->tableWidget->selectedItems();
+
+    for(int i = 0 ; i < listItems.size(); ++i)
+    {
+        listItems[i]->setFlags(Qt::NoItemFlags);
+    }
+
 }
 
 void windowEditMsgList::slotApply()
@@ -25,7 +38,13 @@ void windowEditMsgList::slotApply()
     for(int i = 0 ; i < list.size(); ++i)
     {
         QString aaa = ui->tableWidget->item(i,0)->text();
-        int dislike = ui->tableWidget->item(i,0)->checkState();
+
+        if(ui->tableWidget->item(i,0)->flags() == 0)
+            aaa = DELETING_MSG;
+
+        int dislike = 0;
+        if(ui->tableWidget->item(i,0)->flags() != 0)
+            dislike = ui->tableWidget->item(i,0)->checkState();
 
         outing[i] = qMakePair(aaa,dislike == Qt::Checked ? 0 : 1);
     }
@@ -48,6 +67,8 @@ void windowEditMsgList::slotShow()
            pItem->setCheckState(Qt::Checked);
         ui->tableWidget->setItem(i, 0, pItem);
     }
+
+
 
     show();
 }

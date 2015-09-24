@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>657</width>
-    <height>438</height>
+    <width>771</width>
+    <height>479</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>20</y>
+     <y>10</y>
      <width>611</width>
      <height>401</height>
     </rect>
@@ -39,7 +39,7 @@
 </string>
       </property>
       <property name="text">
-       <string>Кликните дважы на сообщение для его изменения</string>
+       <string>Кликните дважды на сообщение для его изменения</string>
       </property>
      </widget>
     </item>
@@ -51,23 +51,16 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QWidget" name="layoutWidget">
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QPushButton" name="pushButton">
-          <property name="text">
-           <string>Предыдущая</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_2">
-          <property name="text">
-           <string>Следующая</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+      <widget class="QPushButton" name="buttonDelete">
+       <property name="maximumSize">
+        <size>
+         <width>200</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Удалить выбранное</string>
+       </property>
       </widget>
       <widget class="QDialogButtonBox" name="buttonBox">
        <property name="standardButtons">

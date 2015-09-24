@@ -1,6 +1,8 @@
 #ifndef MYXML_H
 #define MYXML_H
 
+#define DELETING_MSG "Удалить"
+
 #include <QVector>
 #include <QPair>
 #include <QString>
