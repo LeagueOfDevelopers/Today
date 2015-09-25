@@ -18,12 +18,15 @@ myShowManager::myShowManager(QObject *parent) : QObject(parent)
     connect(timer,SIGNAL(timeout()),this,SLOT(checkTime()));
     timer->start(15000);
 }
+
 void myShowManager::writeToLog()
 {
 
 }
 void myShowManager::readLog()
 {
+    if(myLog::checkNewDay())
+        myLog::makeNewDay();
 
 }
 void myShowManager::checkTime()

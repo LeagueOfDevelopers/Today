@@ -16,6 +16,20 @@ myWindow::myWindow(QWidget *parent) : QWidget(parent)
     mySetPosition();
     setElems();
     setMyLabelStyle();
+    mySetFont();
+}
+
+void myWindow::mySetFont()
+{
+
+    QFont copyFont = label->font();
+    copyFont.setPixelSize(28);
+
+    QPalette pal = palette();
+    pal.setColor(label->foregroundRole(),Qt::white);
+
+    label->setPalette(pal);
+    label->setFont(copyFont);
 
 }
 
@@ -77,6 +91,7 @@ void myWindow::setElems()
     QHBoxLayout* phbxLayout = new QHBoxLayout;
 
     phbxLayout->addWidget(like);
+    phbxLayout->addStretch(1);
     phbxLayout->addWidget(dislike);
 
     pvbxLayout->addWidget(label);

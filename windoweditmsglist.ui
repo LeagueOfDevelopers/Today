@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>771</width>
-    <height>479</height>
+    <width>655</width>
+    <height>427</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -44,7 +44,13 @@
      </widget>
     </item>
     <item>
-     <widget class="QTableWidget" name="tableWidget"/>
+     <widget class="QTableWidget" name="tableWidget">
+      <column>
+       <property name="text">
+        <string>Текст сообщения</string>
+       </property>
+      </column>
+     </widget>
     </item>
     <item>
      <widget class="QSplitter" name="splitter">

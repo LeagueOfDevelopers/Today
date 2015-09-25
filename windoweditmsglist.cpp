@@ -34,6 +34,7 @@ void windowEditMsgList::slotDelete()
 
 void windowEditMsgList::slotApply()
 {
+    hide();
     QVector < QPair < QString, int > > outing(list.size());
     for(int i = 0 ; i < list.size(); ++i)
     {
@@ -55,7 +56,8 @@ void windowEditMsgList::slotShow()
 {
     list = myXml::getAllMsg();
 
-    ui->tableWidget->setColumnCount(1);
+    //ui->tableWidget->setColumnWidth(0,350);
+
     ui->tableWidget->setRowCount(list.size());
     for(int i = 0 ; i < list.size(); ++i)
     {
@@ -68,7 +70,7 @@ void windowEditMsgList::slotShow()
         ui->tableWidget->setItem(i, 0, pItem);
     }
 
-
+    ui->tableWidget->horizontalHeader()->setStretchLastSection(true);
 
     show();
 }

@@ -14,6 +14,28 @@
 
 namespace myLog {
 
+    bool checkNewDay()
+    {
+        QDomDocument doc("shows");
+        QFile file("shows.xml");
+        if (!file.open(QIODevice::ReadOnly)) {
+            return;
+        }
+        // Parse file
+        if (!doc.setContent(&file)) {
+           file.close();
+           return;
+        }
+        file.close();
+
+        QDomElement dayNode = doc.elementsByTagName("day").item(0).toElement();
+        QString lastDay = dayNode.attribute("date","");
+        QString curDay = QDate::currentDate().toString("dd.MM.yyyy");
+
+        return curDay == lastDay ? true : false;
+
+    }
+
     void writeShowToLog(QTime inner)
     {
         QDomDocument doc("shows");

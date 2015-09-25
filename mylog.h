@@ -7,6 +7,7 @@ namespace myLog
     void writeShowToLog(QTime);
     void readFromLog();
     void makeNewDay();
+    bool checkNewDay();
     int getCountCurDay();
     QTime getLastTime();
     QTime getPlanTime(int);

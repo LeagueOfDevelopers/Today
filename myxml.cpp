@@ -199,7 +199,7 @@ namespace myXml
         // Modify content
         QDomNodeList nodes = doc.elementsByTagName("node");
 
-        int numNewNode = nodes.size()+1;
+        int numNewNode = nodes.item(nodes.size()-1).toElement().attribute("num","").toInt()+1;
         int numInBaseNewNode = -1;
         int showsNewNode = 0;
         int dislikeNewNode = 0;

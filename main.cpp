@@ -21,8 +21,11 @@
 
 int main(int argc, char *argv[])
 {
-    //myLog::makeNewDay();
+    myLog::makeNewDay();
     MyApplication a(argc, argv);
+
+    a.setQuitOnLastWindowClosed(false);
+
     myWindow w;
     myShowManager m;
     Settings z;
