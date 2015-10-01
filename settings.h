@@ -19,6 +19,7 @@ public:
     ~Settings();
     QPushButton* returnButtonToAddMsg();
     QPushButton* returnButtonEditMsg();
+    QPushButton* returnButtonColorEdit();
 
 
 private:

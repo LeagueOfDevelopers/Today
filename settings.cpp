@@ -7,6 +7,7 @@ Settings::Settings(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Settings)
 {
+
     ui->setupUi(this);
     this -> setTrayIconActions();
     this -> showTrayIcon();
@@ -17,7 +18,14 @@ Settings::Settings(QWidget *parent) :
 
     ui->sliderTimeBetweenShows->setRange(5,360);
     ui->sliderTimeBetweenShows->setSingleStep(5);
+
     ui->sliderShows->setRange(1,50);
+    ui->sliderShows->setSingleStep(1);
+    ui->sliderShows->setTickPosition(QSlider::TicksAbove);
+    ui->sliderShows->setTickInterval(5);
+
+    ui->sliderTimeBetweenShows->setTickInterval(15);
+    ui->sliderTimeBetweenShows->setTickPosition(QSlider::TicksAbove);
 
     ui->sliderShows->setValue(_settings.value("frequency","").toInt());
     ui->sliderTimeBetweenShows->setValue(_settings.value("periodShows","").toInt());
@@ -25,11 +33,18 @@ Settings::Settings(QWidget *parent) :
 
     connect(ui->buttonBox,SIGNAL(accepted()),this,SLOT(slotApply()));
     connect(ui->buttonBox,SIGNAL(rejected()),this,SLOT(slotCancel()));
+
+    this->setFixedSize(this->size());
 }
 
 QPushButton* Settings::returnButtonToAddMsg()
 {
     return ui->addMsgButton;
+}
+
+QPushButton* Settings::returnButtonColorEdit()
+{
+    return ui->changeColorButton;
 }
 
 QPushButton* Settings::returnButtonEditMsg()

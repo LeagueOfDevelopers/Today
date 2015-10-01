@@ -10,6 +10,9 @@ windowAddMsg::windowAddMsg(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->buttonSend,SIGNAL(clicked(bool)),this,SLOT(slotApply()));
     mySetBackgroundColor();
+
+    this->setFixedSize(this->size());
+
 }
 
 

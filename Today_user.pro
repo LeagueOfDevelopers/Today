@@ -22,7 +22,9 @@ SOURCES += main.cpp \
     mylog.cpp \
     settings.cpp \
     windowaddmsg.cpp \
-    windoweditmsglist.cpp
+    windoweditmsglist.cpp \
+    mywidget.cpp \
+    settingscolor.cpp
 
 HEADERS  += \
     myapplication.h \
@@ -33,12 +35,15 @@ HEADERS  += \
     mylog.h \
     settings.h \
     windowaddmsg.h \
-    windoweditmsglist.h
+    windoweditmsglist.h \
+    mywidget.h \
+    settingscolor.h
 
 FORMS    += \
     settings.ui \
     windowaddmsg.ui \
-    windoweditmsglist.ui
+    windoweditmsglist.ui \
+    settingscolor.ui
 
 RESOURCES += \
     myresource.qrc

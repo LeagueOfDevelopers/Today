@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SettingsColor</class>
+ <widget class="QWidget" name="SettingsColor">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>499</width>
+    <height>172</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="Red">
+       <property name="minimumSize">
+        <size>
+         <width>119</width>
+         <height>23</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Красный</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="Blue">
+       <property name="minimumSize">
+        <size>
+         <width>119</width>
+         <height>23</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Синий</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="Green">
+       <property name="minimumSize">
+        <size>
+         <width>119</width>
+         <height>23</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Зеленый</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

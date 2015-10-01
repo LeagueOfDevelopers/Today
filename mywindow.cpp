@@ -17,6 +17,14 @@ myWindow::myWindow(QWidget *parent) : QWidget(parent)
     setElems();
     setMyLabelStyle();
     mySetFont();
+
+    connect(like,SIGNAL(clicked(bool)),SLOT(hide()));
+    connect(dislike,SIGNAL(clicked(bool)),SLOT(dislikeMsg()));
+}
+
+void myWindow::dislikeMsg()
+{
+    myXml::modifyMessage(numMessage,myXml::dislikeTrue);
 }
 
 void myWindow::mySetFont()
@@ -83,8 +91,8 @@ void myWindow::mySetPosition()
 
 void myWindow::setElems()
 {
-    like = new QPushButton("like");
-    dislike = new QPushButton("dislike");
+    like = new QPushButton("Скрыть");
+    dislike = new QPushButton("Никогда не показывать");
     label = new QLabel;
 
     QVBoxLayout* pvbxLayout = new QVBoxLayout;
@@ -112,7 +120,7 @@ void myWindow::myShowMessage()
 
     qsrand(time(NULL));
 
-    int numMessage = qrand()%mas.size();
+    numMessage = qrand()%mas.size();
 
     QString showText = mas[numMessage].first;
     label->setText(showText);
@@ -120,6 +128,7 @@ void myWindow::myShowMessage()
 
     show();
     setFocus();
+
 
 
     QTimer::singleShot(10000,this,SLOT(myHide()));

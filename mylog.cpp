@@ -19,12 +19,12 @@ namespace myLog {
         QDomDocument doc("shows");
         QFile file("shows.xml");
         if (!file.open(QIODevice::ReadOnly)) {
-            return;
+            return true;
         }
         // Parse file
         if (!doc.setContent(&file)) {
            file.close();
-           return;
+           return true;
         }
         file.close();
 

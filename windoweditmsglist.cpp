@@ -19,6 +19,9 @@ windowEditMsgList::windowEditMsgList(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->buttonBox,SIGNAL(accepted()),this,SLOT(slotApply()));
     connect(ui->buttonDelete,SIGNAL(clicked(bool)),SLOT(slotDelete()));
+
+    this->setFixedSize(this->size());
+
 }
 
 void windowEditMsgList::slotDelete()
@@ -55,8 +58,6 @@ void windowEditMsgList::slotApply()
 void windowEditMsgList::slotShow()
 {
     list = myXml::getAllMsg();
-
-    //ui->tableWidget->setColumnWidth(0,350);
 
     ui->tableWidget->setRowCount(list.size());
     for(int i = 0 ; i < list.size(); ++i)

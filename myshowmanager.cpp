@@ -32,7 +32,7 @@ void myShowManager::readLog()
 void myShowManager::checkTime()
 {
     //СДЕЛАТЬ ПРОВЕРКУ НА ВХОЖДЕНИЕ В НОВЫЕ СУТКИ!
-
+//TODO
     QDateTime a = QDateTime::currentDateTime();
     unsigned long long int z = a.toTime_t() - start_time.toTime_t();
     //всунули костыль для теста

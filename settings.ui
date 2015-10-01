@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>569</width>
-    <height>310</height>
+    <height>323</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -100,6 +100,13 @@
        <widget class="QPushButton" name="editMsgButton">
         <property name="text">
          <string>Редактировать свои сообщения</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="changeColorButton">
+        <property name="text">
+         <string>Изменить цвет!</string>
         </property>
        </widget>
       </item>
