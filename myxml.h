@@ -7,6 +7,7 @@
 #include <QPair>
 #include <QString>
 #include <QDomNode>
+#include <QPair>
 
 namespace myXml
 {
@@ -16,9 +17,14 @@ namespace myXml
     };
 
     QVector < QPair <QString , int > > getMessages(bool = false);
-    void modifyMessage(int num, enum type_operation);
-    void addMessage(QString text);
     QVector < QDomNode >getAllMsg();
+    QVector < QPair < int , QString > > myParseHtml(QString text);
+
+    QPair < int , QString > myParseRow(QString text);
+
+    void uptadeBaseFromNet();
+    void modifyMessage(int num, enum type_operation);
+    void addMessage(QString text, int numInBase = -1);
     void modifyBase ( QVector < QDomNode > , QVector < QPair <QString , int > > );
 }
 #endif // MYXML_H

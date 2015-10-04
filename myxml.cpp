@@ -9,6 +9,127 @@
 namespace myXml
 {
 
+    void uptadeBaseFromNet()
+    {
+        QDomDocument doc("messages");
+        QFile file("messages.xml");
+        if (!file.open(QIODevice::ReadOnly)) {
+            return;
+        }
+        // Parse file
+        if (!doc.setContent(&file)) {
+           file.close();
+           return;
+        }
+        file.close();
+
+        file.setFileName("download.html");
+        file.open(QIODevice::ReadOnly);
+
+        QString look(file.readAll());
+        QVector < QPair <int , QString > > newMessages = myParseHtml(look);
+
+        for(int i = 0 ; i < newMessages.size(); ++i)
+            myXml::addMessage(newMessages[i].second, newMessages[i].first);
+
+    }
+
+    QVector < QPair < int , QString > > myParseHtml(QString text)
+    {
+        QString beginTr = "<tr>";
+        QString endTr = "</tr>";
+
+        bool insideTr = false;
+        QString buf = "";
+
+        QVector< QString > rows;
+
+        for(int i = 0 ; i < text.size(); ++i)
+        {
+            if(insideTr)
+            {
+                if(text.mid(i,endTr.size()) == endTr)
+                {
+                    rows.push_back(buf);
+                    buf = "";
+                    insideTr = false;
+                    continue;
+                }
+                buf += text[i];
+            }
+            else
+            {
+                if(text.mid(i,beginTr.size()) == beginTr)
+                {
+                    insideTr = true;
+                }
+            }
+        }
+
+        QVector < QPair < int, QString > > ans;
+
+        for(int i = 0 ; i < rows.size(); ++i)
+        {
+            QPair< int, QString> buf =  myParseRow(rows[i]);
+            ans.push_back(buf);
+        }
+        return ans;
+    }
+
+    QPair < int , QString > myParseRow(QString text)
+    {
+        QPair<int, QString > ans;
+
+        QString beginTd = "<td>";
+        QString endTd = "</td>";
+
+        QString buf = "";
+        int num = -1, count = 0;
+
+        bool insideTd = false;
+
+        for(int i = 0 ; i < text.size(); ++i)
+        {
+            if(insideTd)
+            {
+                if(text.mid(i,endTd.size()) == endTd)
+                {
+                    if(count == 0)
+                    {
+                        num = buf.toInt();
+                        buf = "";
+                        ++count;
+                        insideTd = false;
+                        continue;
+                    }
+                    else
+                    {
+                        ans.first = num;
+                        ans.second = buf;
+                        return ans;
+                    }
+                }
+                else
+                {
+                    buf += text[i];
+                }
+            }
+            else
+            {
+                if(text.mid(i,beginTd.size()) == beginTd)
+                {
+                    i+= beginTd.size();
+                    --i;
+                    insideTd = true;
+                    continue;
+                }
+            }
+        }
+
+
+        return ans;
+    }
+
     void modifyBase(QVector<QDomNode> inlist, QVector<QPair<QString, int> >inVectorPair)
     {
         QDomDocument doc("messages");
@@ -182,7 +303,7 @@ namespace myXml
         file.close();
     }
 
-    void addMessage(QString text)
+    void addMessage(QString text, int numInBase)
     {
         QDomDocument doc("messages");
         QFile file("messages.xml");
@@ -200,7 +321,7 @@ namespace myXml
         QDomNodeList nodes = doc.elementsByTagName("node");
 
         int numNewNode = nodes.item(nodes.size()-1).toElement().attribute("num","").toInt()+1;
-        int numInBaseNewNode = -1;
+        int numInBaseNewNode = numInBase;
         int showsNewNode = 0;
         int dislikeNewNode = 0;
 

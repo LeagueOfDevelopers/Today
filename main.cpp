@@ -19,10 +19,10 @@
 #include <windowaddmsg.h>
 #include <windoweditmsglist.h>
 #include <settingscolor.h>
+#include <mynetworkmanager.h>
 
 int main(int argc, char *argv[])
 {
-    myLog::makeNewDay();
     MyApplication a(argc, argv);
 
     a.setQuitOnLastWindowClosed(false);
@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
     windowAddMsg x;
     windowEditMsgList q;
     SettingsColor g;
+    myNetworkManager f;
 
 
     QObject::connect(&m,SIGNAL(showMessage()),&w,SLOT(myShowMessage()));

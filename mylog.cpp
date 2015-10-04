@@ -231,7 +231,7 @@ namespace myLog {
         std::string text = oldtext.toStdString();
         QString fir,sec;
         bool flag = false;
-        for(int i = 0; i < text.size(); ++i)
+        for(unsigned int i = 0; i < text.size(); ++i)
         {
             if(text[i] == ':')
             {
@@ -285,7 +285,7 @@ namespace myLog {
         std::string text = node.toElement().attribute("time","").toStdString();
         QString fir,sec;
         bool flag = false;
-        for(int i = 0; i < text.size(); ++i)
+        for(unsigned int i = 0; i < text.size(); ++i)
         {
             if(text[i] == ':')
             {
